@@ -6,7 +6,7 @@ class IdeaStoreTest < Minitest::Test
    def teardown
     IdeaStore.delete_all
   end
-  
+
   def test_save_and_retrieve_ideas
     idea = Idea.new("celebrate", "with champagne")
     id1 = IdeaStore.save(idea)
@@ -43,4 +43,16 @@ class IdeaStoreTest < Minitest::Test
     assert_equal "cocktails", idea.title
     assert_equal "spicy tomato juice with vodka", idea.description
   end
+
+
+  def test_delete_an_idea
+    id1 = IdeaStore.save Idea.new("song", "99 bottles of beer")
+    id2 = IdeaStore.save Idea.new("gift", "micky mouse belt")
+    id3 = IdeaStore.save Idea.new("dinner", "cheeseburger with bacon and avocado")
+
+    assert_equal ["dinner", "gift", "song"], IdeaStore.all.map(&:title).sort
+    IdeaStore.delete(id2)
+    assert_equal ["dinner", "song"], IdeaStore.all.map(&:title).sort
+  end
+  
 end

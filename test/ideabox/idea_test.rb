@@ -49,5 +49,4 @@ class IdeaTest < Minitest::Test
     idea = Idea.new('sleep', 'all day')
     assert idea.new?
   end
-
 end

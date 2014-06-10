@@ -8,6 +8,10 @@ class IdeaStore
     idea.id
   end
 
+  def self.all
+    @all
+  end
+
   def self.find(id)
     @all.find do |idea|
       idea.id == id
@@ -25,5 +29,10 @@ class IdeaStore
   def self.delete_all
     @all = []
   end
+
+  def self.delete(id)
+    all.delete find(id)
+  end
+
 
 end
