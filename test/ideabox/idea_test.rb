@@ -37,4 +37,17 @@ class IdeaTest < Minitest::Test
     assert_equal 1, idea.id
   end
 
+  def test_update_values
+    idea = Idea.new("drinks", "sparkly water")
+    idea.title = "happy hour"
+    idea.description = "mojitos"
+    assert_equal "happy hour", idea.title
+    assert_equal "mojitos", idea.description
+  end
+
+  def test_a_new_idea
+    idea = Idea.new('sleep', 'all day')
+    assert idea.new?
+  end
+
 end
